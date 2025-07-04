@@ -21,10 +21,13 @@ import {
 import { Link } from "react-router-dom";
 
 const Results = () => {
+  // Get current date
+  const currentDate = new Date().toISOString().split('T')[0];
+  
   // Mock data for interview results
   const interviewResults = {
     overall_score: 85,
-    completion_date: "2024-01-15",
+    completion_date: currentDate,
     duration: "28 minutes",
     role: "Senior Frontend Developer",
     questions_answered: 5,
