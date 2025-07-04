@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -24,6 +23,35 @@ import { AudioVisualizer } from "@/components/AudioVisualizer";
 import { VoiceControls } from "@/components/VoiceControls";
 import { InterviewProgress } from "@/components/InterviewProgress";
 
+// Sample questions for the interview
+const interviewQuestions = [
+  {
+    question: "Tell me about a challenging project you've worked on recently and how you overcame the obstacles you faced.",
+    type: "Behavioral",
+    timeLimit: "3-5 minutes"
+  },
+  {
+    question: "Describe a time when you had to work with a difficult team member. How did you handle the situation?",
+    type: "Behavioral", 
+    timeLimit: "3-4 minutes"
+  },
+  {
+    question: "Give me an example of when you had to learn a new technology or skill quickly for a project.",
+    type: "Technical",
+    timeLimit: "4-5 minutes"
+  },
+  {
+    question: "Tell me about a time when you had to make a decision with incomplete information. What was your approach?",
+    type: "Problem Solving",
+    timeLimit: "3-4 minutes"
+  },
+  {
+    question: "Describe a situation where you had to give constructive feedback to a colleague or team member.",
+    type: "Leadership",
+    timeLimit: "3-4 minutes"
+  }
+];
+
 const Interview = () => {
   const [isRecording, setIsRecording] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
@@ -32,6 +60,7 @@ const Interview = () => {
   const [totalQuestions] = useState(5);
   const [interviewStarted, setInterviewStarted] = useState(false);
   const [elapsedTime, setElapsedTime] = useState(0);
+  const [recordingStartTime, setRecordingStartTime] = useState<number | null>(null);
 
   // Timer effect
   useEffect(() => {
@@ -74,25 +103,67 @@ const Interview = () => {
     setInterviewStarted(false);
     setIsRecording(false);
     setElapsedTime(0);
+    setCurrentQuestion(1);
     toast({
       title: "Interview Ended",
       description: "Thank you for participating! Your results will be analyzed.",
     });
   };
 
+  const moveToNextQuestion = () => {
+    if (currentQuestion < totalQuestions) {
+      setCurrentQuestion(prev => prev + 1);
+      toast({
+        title: "Moving to Next Question",
+        description: `Question ${currentQuestion + 1} of ${totalQuestions}`,
+      });
+    } else {
+      // Interview completed
+      toast({
+        title: "Interview Completed!",
+        description: "Great job! All questions have been answered.",
+      });
+      setTimeout(() => {
+        handleEndInterview();
+      }, 2000);
+    }
+  };
+
   const toggleRecording = () => {
-    setIsRecording(!isRecording);
+    if (!isRecording) {
+      // Start recording
+      setIsRecording(true);
+      setRecordingStartTime(Date.now());
+      toast({
+        title: "Recording Started",
+        description: "Speak clearly into your microphone",
+      });
+    } else {
+      // Stop recording
+      setIsRecording(false);
+      setRecordingStartTime(null);
+      
+      // Simulate processing time, then move to next question
+      toast({
+        title: "Processing Response",
+        description: "Analyzing your answer...",
+      });
+      
+      setTimeout(() => {
+        moveToNextQuestion();
+      }, 2000);
+    }
   };
 
   const toggleMute = () => {
     setIsMuted(!isMuted);
   };
 
-  const currentQuestionData = {
-    question: "Tell me about a challenging project you've worked on recently and how you overcame the obstacles you faced.",
-    type: "Behavioral",
-    timeLimit: "3-5 minutes"
+  const getCurrentQuestionData = () => {
+    return interviewQuestions[currentQuestion - 1] || interviewQuestions[0];
   };
+
+  const currentQuestionData = getCurrentQuestionData();
 
   if (!interviewStarted) {
     return (
@@ -287,12 +358,15 @@ const Interview = () => {
                     <div className="font-medium text-gray-900">Sarah</div>
                     <div className="text-sm text-gray-600 flex items-center">
                       <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
-                      Listening
+                      {isRecording ? "Listening" : "Waiting"}
                     </div>
                   </div>
                 </div>
                 <p className="text-sm text-gray-600">
-                  I'm here to conduct your behavioral interview. Take your time to think through your responses.
+                  {isRecording 
+                    ? "I'm listening to your response. Take your time to provide a detailed answer."
+                    : "Click the microphone to start recording your response to the current question."
+                  }
                 </p>
               </CardContent>
             </Card>
