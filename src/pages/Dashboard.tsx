@@ -86,6 +86,9 @@ const Dashboard = () => {
             <Link to="/interview" className="text-gray-600 hover:text-gray-900 transition-colors">
               Interview
             </Link>
+            <Link to="/results" className="text-gray-600 hover:text-gray-900 transition-colors">
+              Results
+            </Link>
             <Button variant="outline" size="sm">Settings</Button>
           </nav>
         </div>
@@ -226,16 +229,23 @@ const Dashboard = () => {
                           </span>
                         </div>
                       </div>
-                      <div className="text-right">
-                        <div className="text-lg font-semibold text-gray-900">
-                          {interview.score}%
+                      <div className="flex items-center space-x-3">
+                        <div className="text-right">
+                          <div className="text-lg font-semibold text-gray-900">
+                            {interview.score}%
+                          </div>
+                          <Badge 
+                            variant={interview.score >= 80 ? "default" : "secondary"}
+                            className="text-xs"
+                          >
+                            {interview.score >= 80 ? "Excellent" : "Good"}
+                          </Badge>
                         </div>
-                        <Badge 
-                          variant={interview.score >= 80 ? "default" : "secondary"}
-                          className="text-xs"
-                        >
-                          {interview.score >= 80 ? "Excellent" : "Good"}
-                        </Badge>
+                        <Link to="/results">
+                          <Button variant="outline" size="sm">
+                            View Results
+                          </Button>
+                        </Link>
                       </div>
                     </div>
                   ))}

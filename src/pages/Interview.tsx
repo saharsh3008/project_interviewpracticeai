@@ -118,13 +118,13 @@ const Interview = () => {
         description: `Question ${currentQuestion + 1} of ${totalQuestions}`,
       });
     } else {
-      // Interview completed
+      // Interview completed - redirect to results
       toast({
         title: "Interview Completed!",
-        description: "Great job! All questions have been answered.",
+        description: "Great job! Redirecting to your results...",
       });
       setTimeout(() => {
-        handleEndInterview();
+        window.location.href = '/results';
       }, 2000);
     }
   };
