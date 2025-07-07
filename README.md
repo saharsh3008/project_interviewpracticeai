@@ -1,73 +1,24 @@
-# Welcome to your Lovable project
+# InterviewPracticeAI 🎤🧠
 
-## Project info
+InterviewPracticeAI is a personalized web application designed to simulate real interview environments using voice-based question answering. It leverages advanced web technologies and speech-to-text processing to help users practice and improve their interview responses interactively.
 
-**URL**: https://lovable.dev/projects/097678f1-6a88-4428-a1ea-6e7853209d55
+## 🌟 Features
 
-## How can I edit this code?
+- 🎙️ **Voice-based Interview Simulation** – Receive AI-generated interview questions and respond via voice input for a realistic experience.
+- 🧾 **Real-time Transcript** – Your spoken answers are transcribed instantly using speech recognition.
+- 📊 **Feedback on Answers** – Get suggestions to refine your responses and boost confidence.
+- 📚 **Dynamic Question Categories** – Choose from multiple topics (HR, Technical, Behavioral) to tailor your practice session.
 
-There are several ways of editing your application.
+## 🧪 How It Works
 
-**Use Lovable**
+1. Choose a domain or question category.
+2. Click "Start Interview" to receive a random interview question.
+3. Record your answer via the microphone.
+4. View the transcript and receive AI-generated feedback.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/097678f1-6a88-4428-a1ea-6e7853209d55) and start prompting.
+## 🛠️ Tech Stack
 
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/097678f1-6a88-4428-a1ea-6e7853209d55) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+- **Frontend**: React.js, Tailwind CSS  
+- **Backend & API**: Node.js, Express  
+- **AI & Voice Processing**: Web Speech API, OpenAI GPT  
+- **Deployment**: Vercel
